@@ -21,20 +21,30 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	return (int) 1;
 }
 
+void SaveMouseEvent(DWORD message, LPMSLLHOOKSTRUCT mousell)
+{
+
+}
+
 LRESULT CALLBACK DialogProc(HWND hDlgWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
+	LPMSLLHOOKSTRUCT mousell = nullptr;
 	switch (msg) {
 	case WM_INITDIALOG:
 		return FALSE;
 	case WM_COMMAND:
-		switch (LOWORD(wp)) {
+		switch (LOWORD(wp)) 
+		{
 		case IDC_REC_BTN:
 			StartMouseHook(hDlgWnd);
 			return FALSE;
 		default:
 			return FALSE;
 		}
-
+	case DAPHRPA_WM_MOUSEHOOK:
+		mousell = (LPMSLLHOOKSTRUCT)lp;
+		SaveMouseEvent(wp, mousell);
+		return FALSE;
 	default:
 		return FALSE;
 	}
