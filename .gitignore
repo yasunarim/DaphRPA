@@ -1,0 +1,12 @@
+x64/
+Debug/
+DaphRPA/Debug/
+DaphRPA/x64/
+DaphRPA/DaphRPA.vcxproj.filters
+DaphRPA/DaphRPA.vcxproj.user
+DaphRPApp/Debug/
+DaphRPApp/x64/
+DaphRPApp/DaphRPApp.vcxproj.filters
+DaphRPApp/DaphRPApp.vcxproj.user
+.vs/
+!.gitignore
