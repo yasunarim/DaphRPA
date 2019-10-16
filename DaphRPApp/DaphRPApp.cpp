@@ -23,12 +23,17 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 void SaveMouseEvent(DWORD message, LPMSLLHOOKSTRUCT mousell)
 {
-
+	std::ofstream fout;
+	fout.open(L"rec.log", std::ios::app);
+	fout << message << "," << mousell->pt.x << "," << mousell->pt.y << "," << mousell->time << std::endl;
+	fout.close();
 }
 
 LRESULT CALLBACK DialogProc(HWND hDlgWnd, UINT msg, WPARAM wp, LPARAM lp)
 {
+
 	LPMSLLHOOKSTRUCT mousell = nullptr;
+
 	switch (msg) {
 	case WM_INITDIALOG:
 		return FALSE;
@@ -44,6 +49,7 @@ LRESULT CALLBACK DialogProc(HWND hDlgWnd, UINT msg, WPARAM wp, LPARAM lp)
 	case DAPHRPA_WM_MOUSEHOOK:
 		mousell = (LPMSLLHOOKSTRUCT)lp;
 		SaveMouseEvent(wp, mousell);
+		delete mousell;
 		return FALSE;
 	default:
 		return FALSE;

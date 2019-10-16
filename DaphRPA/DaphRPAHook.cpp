@@ -32,8 +32,10 @@ LRESULT CALLBACK MouseHookProc(int code, WPARAM wParam, LPARAM lParam)
 {
 	if (!g_hparent || code < 0)
 		return CallNextHookEx(g_hhook, code, wParam, lParam);
+	LPMSLLHOOKSTRUCT lpmshook = new MSLLHOOKSTRUCT;
+	memcpy(lpmshook, (LPMSLLHOOKSTRUCT)lParam, sizeof(MSLLHOOKSTRUCT));
 
-	PostMessage(g_hparent, DAPHRPA_WM_MOUSEHOOK, wParam, lParam);
+	PostMessage(g_hparent, DAPHRPA_WM_MOUSEHOOK, wParam, (LPARAM)lpmshook);
 
 	return CallNextHookEx(g_hhook, code, wParam, lParam);
 }
