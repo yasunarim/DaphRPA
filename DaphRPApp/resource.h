@@ -15,6 +15,8 @@
 #define IDD_DAPH_DIALOG                 129
 #define IDC_BUTTON1                     1000
 #define IDC_REC_BTN                     1000
+#define IDC_REC_BTN2                    1001
+#define IDC_PLAY_BTN                    1001
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
